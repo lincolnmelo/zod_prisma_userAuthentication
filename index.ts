@@ -6,6 +6,7 @@ import ErrorHandler from "./app/middlewares/ErrorHandler"
 import { HttpException } from "./app/utils/HttpExceptions"
 import { AppRoutes } from "./app/routes/AppRoutes"
 
+const port = process.env.API_PORT || 3000
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -21,8 +22,8 @@ app.use(ErrorHandler)
 
 const initializeApp = async () => {
   try {
-     app.listen(3000, () => {
-      console.log(`[SERVER]: Servidor disponivel em http://127.0.0.1:3000/api`)
+     app.listen(port, () => {
+      console.log(`[SERVER]: Servidor disponivel em http://127.0.0.1:${port}/api`)
      })
      await connectToDB()
    } catch (err) {
